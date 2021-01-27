@@ -1,0 +1,89 @@
+﻿@model IEnumerable<OnlineShopping.Models.Laptops>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<style>
+    
+    .image {
+        opacity: 1;
+        display: block;
+        width: 100px;
+        height: 100px;
+        transition: .5s ease;
+        backface-visibility: hidden;
+    }
+    .image:hover  {
+        opacity: 0.3;
+    }
+    .name {
+        color: black;
+        text-decoration: none;
+        
+    }
+        .name:hover {
+            text-decoration: underline;
+            color: white;
+            border: 1px solid black;
+            padding:10px;
+            background:#808080;
+        }
+
+</style>
+
+<h1>Index</h1>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<table class="table">
+    <thead>
+        <tr>
+            <th style="visibility:hidden">
+                @Html.DisplayNameFor(model => model.serialNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ModelName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.specification)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Colour)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td style="visibility:hidden">
+                @Html.DisplayFor(modelItem => item.serialNo)
+            </td>
+            @*<td>
+                <img src="~/images/@Html.DisplayFor(modelItem => item.Image)" width="100px" height="100px" />
+            </td>*@
+        <div class="container">
+            <td>
+                <a class="image" title="Click To View" href="@Url.Action("Details","Laptop",new { sno = item.serialNo })"><img src="~/images/@Html.DisplayFor(modelItem => item.Image)" width="100px" height="100px" /></a>
+            </td>
+        </div>
+            <td>
+                <a class="name" title="Click To View"  href="@Url.Action("Details","Laptop",new { sno = item.serialNo })">@Html.DisplayFor(modelItem => item.ModelName) </a>
+           </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.specification)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Colour)
+            </td>
+            <td>
+                <i class="fa fa-inr"></i>@Html.DisplayFor(modelItem => item.Price)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

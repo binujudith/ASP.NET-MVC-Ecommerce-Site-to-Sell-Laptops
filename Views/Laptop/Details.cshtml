@@ -1,0 +1,91 @@
+﻿@model OnlineShopping.Models.Laptops
+
+@{
+    ViewData["Title"] = "Details";
+}
+<style>
+    .cart {
+        border: none;
+        width: 60px;
+        height: 40px;
+        background-color: #eee;
+        transition: all ease-in-out 0.2s;
+        cursor: pointer;
+    }
+
+        .cart:hover {
+            height: 50px;
+            width: 70px;
+            border: 1px solid #888;
+            background-color: #ddd;
+        }
+</style>
+
+
+<div>
+    <h4>Specifications</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2"style="visibility:hidden">
+            @Html.DisplayNameFor(model => model.serialNo)
+        </dt>
+        <dd class="col-sm-10" style="visibility:hidden">
+            @Html.DisplayFor(model => model.serialNo)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Image)
+        </dt>
+        <dd class="col-sm-10">
+            <img src="~/images/@Html.DisplayFor(model => model.Image)" width="100px" height="100px" />
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ModelName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ModelName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.specification)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.specification)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Colour)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Colour)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd class="col-sm-10">
+            <i class="fa fa-inr"></i>@Html.DisplayFor(model => model.Price)
+        </dd>
+    </dl>
+</div>
+<div>
+
+    @*<a asp-action="Index">Back to List</a>&nbsp;&nbsp;&emsp;&emsp;&emsp;&emsp;
+        <button type="button" class="cart" title="Add to cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></button>*@
+    @*<a asp-controller="OrderPlacement" asp-action="Placeorder" , class="btn btn-info btn-lg" style="margin-left:30px">
+        <span class="fa fa-shopping-cart"></span>*@
+    @*@Html.ActionLink("Add To Cart", "PlaceOrder", "OrderPlacement", new { id=Model.serialNo})*@
+    <a href="@Url.Action("PlaceOrder","OrderPlacement",new { id = Model.serialNo,val="Add" })" class="=btn btn-info btn-lg" style="text-decoration:none">
+        <i class="fa fa-shopping-cart"></i>
+        <span>
+            Add To Cart
+        </span>
+    </a>
+    @*</a>*@
+    @*<a asp-controller="AddToCart" asp-action="Index" class="btn btn-info btn-lg" style="margin-left:60px">
+            <span class="fa fa-cart-plus">Buy Now</span>
+        </a>
+        <br/><br />*@
+    <a asp-controller="Laptop" asp-action="Index" class="btn btn-info btn-lg" style="margin-left:60px">
+        <span class="fa fa-cart-plus">Continue Shopping</span>
+    </a>
+    <br />
+
+    <br />
+</div>
